@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem; /* Account for fixed navbar */
+  }
+  
+  body {
+    @apply bg-dark text-white;
+  }
+}
+
+/* Smooth scroll offset for anchor links */
+@layer utilities {
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

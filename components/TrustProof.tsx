@@ -56,36 +56,111 @@ export default function TrustProof() {
             </div>
             <p className="text-white/70 text-sm">Based on verified contractor reviews</p>
           </div>
-        </div>
 
-        {/* Revenue Numbers */}
-        <div ref={sectionRef} className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 mb-16 max-w-5xl mx-auto">
-          <div className="border border-charcoal bg-charcoal/20 p-12 md:p-16 rounded-sm text-center w-full md:w-1/2">
-            <p className="text-white/60 text-base md:text-lg mb-4 uppercase tracking-wide">Total Revenue Generated</p>
-            <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-gold">
-              $<RollingNumber target={12000000} duration={5000} decimals={0} formatAtTarget={true} startImmediately={hasStarted} />+
-            </p>
-          </div>
-          <div className="border border-charcoal bg-charcoal/20 p-12 md:p-16 rounded-sm text-center w-full md:w-1/2">
-            <p className="text-white/60 text-base md:text-lg mb-4 uppercase tracking-wide">Success Stories</p>
-            <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-gold">
-              <RollingNumber target={200} duration={5000} decimals={0} startImmediately={hasStarted} />+
-            </p>
+          {/* Trustpilot Review Screenshots */}
+          <div className="mt-8">
+            <h4 className="text-lg font-bold mb-4 text-center">Verified Reviews</h4>
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
+              {[
+                'tmp05rfdxt6.jpeg',
+                'tmp0bw0ldnr.jpeg',
+                'tmp0oz3piob.jpeg',
+                'tmp5fnl73lu.jpeg',
+                'tmp6w0b1_os.jpeg',
+                'tmp93jrucb2.jpeg',
+                'tmp9ad1cjsy.jpeg',
+                'tmp_3_8grrs.jpeg',
+                'tmp_75h30ir.jpeg',
+                'tmpb41m1g2v.jpeg',
+                'tmpdfd5lka7.jpeg',
+                'tmpfxvfilpw.jpeg',
+                'tmpir8wvksi.jpeg',
+                'tmpked2c5t5.jpeg',
+                'tmpku9kzd27.jpeg',
+                'tmpmbfx76t9.jpeg',
+                'tmpox8i9vvj.jpeg',
+                'tmppzpyeh1c.jpeg',
+                'tmpqpn4gm_6.jpeg',
+                'tmps7u7v1hm.jpeg',
+                'tmpsqrf2vvk.jpeg',
+                'tmptgyjfkrz.jpeg',
+                'tmpvh5afj8e.jpeg',
+                'tmpwnai5oky.jpeg',
+                'tmpxgkxlvur.jpeg',
+                'tmpy5xpdwvj.jpeg',
+                'tmpy938a1dq.jpeg',
+                'tmpz8bze8iu.jpeg',
+                'tmpzn1uqglo.jpeg',
+              ].map((filename, index) => (
+                <div key={index} className="break-inside-avoid mb-4 border border-charcoal bg-charcoal/30 rounded-sm overflow-hidden">
+                  <img 
+                    src={`/trustpilot-reviews/${filename}`}
+                    alt={`Trustpilot Review ${index + 1}`}
+                    className="w-full h-auto block"
+                    loading="lazy"
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${filename}`);
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Booked Jobs Screenshots Grid */}
         <div className="mb-8">
           <h3 className="text-xl font-bold mb-6 text-center">Recent Booked Jobs</h3>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="border border-charcoal bg-charcoal/30 rounded-sm overflow-hidden aspect-video flex items-center justify-center">
-                <div className="text-white/30 text-center p-4">
-                  <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <p className="text-xs">Job Screenshot {item}</p>
-                </div>
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
+            {[
+              'tmp0a7fp0y_.jpeg',
+              'tmp1cvgtyz_.jpeg',
+              'tmp1m38yp3l.jpeg',
+              'tmp31qp23m4.jpeg',
+              'tmp3x_mw5qs.jpeg',
+              'tmp3zg519ou.jpeg',
+              'tmp4rndftce.jpeg',
+              'tmp4w8zn_0a.jpeg',
+              'tmp54hgtqwj.jpeg',
+              'tmp8_st7ggq.jpeg',
+              'tmp8khqs01t.jpeg',
+              'tmp8u1ftwml.jpeg',
+              'tmp93lblksl.jpeg',
+              'tmpaqea8rxv.jpeg',
+              'tmpaticiicp.jpeg',
+              'tmpbcwcgnj9.jpeg',
+              'tmpbwsotpv0.jpeg',
+              'tmpbxgxd_7q.jpeg',
+              'tmpffzfwdts.jpeg',
+              'tmpiax3ce4l.jpeg',
+              'tmpix2l0mce.jpeg',
+              'tmpkzwrck4m.jpeg',
+              'tmpmxla6mvv.jpeg',
+              'tmpnv0ywejk.jpeg',
+              'tmpnw6ui6jy.jpeg',
+              'tmpoeqhxccj.jpeg',
+              'tmppph8hbtp.jpeg',
+              'tmpqy6k5ext.jpeg',
+              'tmpsvbhcb4l.jpeg',
+              'tmpsvko0kn3.jpeg',
+              'tmpty0mpib6.jpeg',
+              'tmpty1n89e9.jpeg',
+              'tmpux41fgpb.jpeg',
+              'tmpym57chg5.jpeg',
+              'tmpzkaggn1e.jpeg',
+            ].map((filename, index) => (
+              <div key={index} className="break-inside-avoid mb-4 border border-charcoal bg-charcoal/30 rounded-sm overflow-hidden">
+                <img 
+                  src={`/recent_booked_jobs/${filename}`}
+                  alt={`Booked Job ${index + 1}`}
+                  className="w-full h-auto block"
+                  loading="lazy"
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${filename}`);
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
               </div>
             ))}
           </div>

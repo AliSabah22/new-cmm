@@ -34,7 +34,8 @@ export default function SplashScreen() {
       className="fixed inset-0 z-[100] bg-dark flex items-center justify-center transition-opacity ease-in-out"
       style={{ 
         opacity: opacity / 100,
-        transitionDuration: '800ms'
+        transitionDuration: '800ms',
+        pointerEvents: opacity < 10 ? 'none' : 'auto'
       }}
     >
       <img 

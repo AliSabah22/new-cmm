@@ -1,3 +1,5 @@
+'use client'
+
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import ProblemLock from '@/components/ProblemLock'
@@ -12,16 +14,20 @@ import SplashScreen from '@/components/SplashScreen'
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Content is always rendered and visible */}
+      <div>
+        <Navbar />
+        <Hero />
+        <ProblemLock />
+        <Solution />
+        <Testimonials />
+        <TrustProof />
+        <ClientWins />
+        <WhoThisIsFor />
+        <FinalClose />
+      </div>
+      {/* Splash screen overlays on top and fades out to reveal content */}
       <SplashScreen />
-      <Navbar />
-      <Hero />
-      <ProblemLock />
-      <Solution />
-      <Testimonials />
-      <TrustProof />
-      <ClientWins />
-      <WhoThisIsFor />
-      <FinalClose />
     </main>
   )
 }

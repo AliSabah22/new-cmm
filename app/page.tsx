@@ -13,31 +13,29 @@ import FinalClose from '@/components/FinalClose'
 import SplashScreen from '@/components/SplashScreen'
 
 export default function Home() {
-  const [showContent, setShowContent] = useState(false)
+  const [contentOpacity, setContentOpacity] = useState(0)
 
   return (
     <main className="min-h-screen">
-      {/* Content hidden until splash screen completes, then fades in */}
-      {showContent && (
-        <div 
-          className="transition-opacity ease-in-out"
-          style={{ 
-            animation: 'fadeIn 800ms ease-in-out',
-          }}
-        >
-          <Navbar />
-          <Hero />
-          <ProblemLock />
-          <Solution />
-          <Testimonials />
-          <TrustProof />
-          <ClientWins />
-          <WhoThisIsFor />
-          <FinalClose />
-        </div>
-      )}
-      {/* Splash screen - always rendered first, fades out to reveal content */}
-      <SplashScreen onComplete={() => setShowContent(true)} />
+      {/* Content always rendered but hidden until splash fades out */}
+      <div 
+        style={{ 
+          opacity: contentOpacity,
+          transition: 'opacity 800ms ease-in-out',
+        }}
+      >
+        <Navbar />
+        <Hero />
+        <ProblemLock />
+        <Solution />
+        <Testimonials />
+        <TrustProof />
+        <ClientWins />
+        <WhoThisIsFor />
+        <FinalClose />
+      </div>
+      {/* Splash screen - fades out to reveal content underneath */}
+      <SplashScreen onComplete={() => setContentOpacity(1)} />
     </main>
   )
 }

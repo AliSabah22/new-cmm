@@ -7,38 +7,46 @@ interface SplashScreenProps {
 }
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
-  const [opacity, setOpacity] = useState(1) // Start at 1 (fully visible) so it's the first thing seen
-  const [shouldRender, setShouldRender] = useState(true)
+  const [isFadingIn, setIsFadingIn] = useState(false)
+  const [isFadingOut, setIsFadingOut] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    // Wait a bit before starting fade out (give user time to see the splash)
-    // Start fade out after 1400ms (visible for ~1400ms)
+    // Start fade in after mount
+    const fadeInTimer = setTimeout(() => {
+      setIsFadingIn(true)
+    }, 10)
+    
+    // Wait before starting fade out (800ms fade in + 1400ms visible = 2200ms)
     const fadeOutTimer = setTimeout(() => {
-      setOpacity(0)
-      // Call onComplete when fade out starts, so content can begin appearing
+      // Trigger content fade-in when splash starts fading out
       if (onComplete) {
         onComplete()
       }
+      // Start fade out
+      setIsFadingOut(true)
       // Remove from DOM after fade out completes (800ms)
       setTimeout(() => {
-        setShouldRender(false)
+        setIsVisible(false)
       }, 800)
-    }, 1400)
+    }, 2200)
 
     return () => {
+      clearTimeout(fadeInTimer)
       clearTimeout(fadeOutTimer)
     }
   }, [onComplete])
 
-  if (!shouldRender) return null
+  if (!isVisible) return null
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-dark flex items-center justify-center transition-opacity ease-in-out"
+      className={`fixed inset-0 z-[100] bg-dark flex items-center justify-center transition-opacity duration-800 ease-in-out ${
+        isFadingOut ? 'opacity-0' : isFadingIn ? 'opacity-100' : 'opacity-0'
+      }`}
       style={{ 
-        opacity: opacity,
         transitionDuration: '800ms',
-        pointerEvents: opacity < 0.1 ? 'none' : 'auto'
+        pointerEvents: isFadingOut ? 'none' : 'auto',
       }}
     >
       <img 

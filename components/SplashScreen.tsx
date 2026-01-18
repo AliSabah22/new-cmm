@@ -2,30 +2,33 @@
 
 import { useState, useEffect } from 'react'
 
-export default function SplashScreen() {
-  const [opacity, setOpacity] = useState(0)
+interface SplashScreenProps {
+  onComplete?: () => void
+}
+
+export default function SplashScreen({ onComplete }: SplashScreenProps) {
+  const [opacity, setOpacity] = useState(1) // Start at 1 (fully visible) so it's the first thing seen
   const [shouldRender, setShouldRender] = useState(true)
 
   useEffect(() => {
-    // Fade in: 0 to 100 over 800ms
-    const fadeInTimer = setTimeout(() => {
-      setOpacity(100)
-    }, 10) // Small delay to trigger transition
-
-    // Start fade out after 1400ms (800ms fade in + 600ms visible)
+    // Wait a bit before starting fade out (give user time to see the splash)
+    // Start fade out after 1400ms (visible for ~1400ms)
     const fadeOutTimer = setTimeout(() => {
       setOpacity(0)
+      // Call onComplete when fade out starts, so content can begin appearing
+      if (onComplete) {
+        onComplete()
+      }
       // Remove from DOM after fade out completes (800ms)
       setTimeout(() => {
         setShouldRender(false)
       }, 800)
-    }, 1400) // 800ms fade in + 600ms visible = 1400ms before fade out starts
+    }, 1400)
 
     return () => {
-      clearTimeout(fadeInTimer)
       clearTimeout(fadeOutTimer)
     }
-  }, [])
+  }, [onComplete])
 
   if (!shouldRender) return null
 
@@ -33,9 +36,9 @@ export default function SplashScreen() {
     <div
       className="fixed inset-0 z-[100] bg-dark flex items-center justify-center transition-opacity ease-in-out"
       style={{ 
-        opacity: opacity / 100,
+        opacity: opacity,
         transitionDuration: '800ms',
-        pointerEvents: opacity < 10 ? 'none' : 'auto'
+        pointerEvents: opacity < 0.1 ? 'none' : 'auto'
       }}
     >
       <img 

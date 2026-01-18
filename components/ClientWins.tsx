@@ -31,31 +31,43 @@ export default function ClientWins() {
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal border-y border-charcoal">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 text-balance">
-          Live Pipelines Running Right Now
+          Client's Recent Wins
         </h2>
         <p className="text-center text-white/60 mb-12">Real operators. Real systems. Real results.</p>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {wins.map((win, index) => (
-            <div key={index} className="border border-gold/30 bg-dark/50 p-6 rounded-sm">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-bold mb-1">{win.contractor}</h3>
-                  <span className="inline-block px-3 py-1 bg-gold/20 text-gold text-xs font-semibold rounded-sm uppercase tracking-wide">
-                    {win.status}
-                  </span>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-charcoal">
-                <div>
-                  <p className="text-white/60 text-sm mb-1">Pipeline Value</p>
-                  <p className="text-2xl font-bold text-gold">{win.value}</p>
-                </div>
-                <div>
-                  <p className="text-white/60 text-sm mb-1">Jobs in Queue</p>
-                  <p className="text-2xl font-bold">{win.jobs}</p>
-                </div>
-              </div>
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
+          {[
+            'tmp4qpf0e0n.jpeg',
+            'tmp646f3jk2.jpeg',
+            'tmp98rlhkgj.jpeg',
+            'tmp9f8qvi_f.jpeg',
+            'tmpa6rjzhul.jpeg',
+            'tmpadgr6vja.jpeg',
+            'tmpc57x_c86.jpeg',
+            'tmpd7ezhcpi.jpeg',
+            'tmpfuyhee34.jpeg',
+            'tmpgb6i6z5j.jpeg',
+            'tmpgyxcyzmy.jpeg',
+            'tmphw8iy466.jpeg',
+            'tmpk4ecnacl.jpeg',
+            'tmpmdm7irgk.jpeg',
+            'tmpozpdxg91.jpeg',
+            'tmpql7w_h5r.jpeg',
+            'tmptm6v5ay1.jpeg',
+            'tmpvu9qz6eq.jpeg',
+            'tmpw1zqzwfx.jpeg',
+          ].map((filename, index) => (
+            <div key={index} className="break-inside-avoid mb-4 border border-charcoal bg-charcoal/30 rounded-sm overflow-hidden">
+              <img 
+                src={`/client's_recent_wins/${filename}`}
+                alt={`Client Win ${index + 1}`}
+                className="w-full h-auto block"
+                loading="lazy"
+                onError={(e) => {
+                  console.error(`Failed to load image: ${filename}`);
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
             </div>
           ))}
         </div>
